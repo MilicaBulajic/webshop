@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { ProductsContext } from "../contenxt/ProductsContextProvider";
+import ProductItem from "../components/ProductItem";
+import { mobile } from "../responsive";
 
-const Home = () => {
+const ProductContainer = styled.div`
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  ${mobile({ padding: "0px", flexDirection: "column" })}
+`;
+
+function Home() {
+  const products = useContext(ProductsContext);
   return (
-    <div>Home</div>
+    <ProductContainer> 
+      {products.map((product) => (
+      <ProductItem key={product.id} productData={product} />
+    ))}
+    </ProductContainer>
   )
 }
 
