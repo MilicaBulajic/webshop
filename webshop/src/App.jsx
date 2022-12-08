@@ -7,14 +7,12 @@ function App() {
 
   return (
     <ProductsContextProvider>
-      <Router>
         <Routes>
           <Route path="/products" element={<Home />} />
         </Routes>
         {location.pathname === "/" && (
           <Navigate to="/products" replace={true} />
         )}
-      </Router>
       </ProductsContextProvider>
   );
 }

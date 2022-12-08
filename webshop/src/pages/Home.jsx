@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ProductsContext } from "../contenxt/ProductsContextProvider";
+import { ProductsContext } from "../context/ProductsContextProvider";
 import ProductItem from "../components/ProductItem";
 import { mobile } from "../responsive";
 
