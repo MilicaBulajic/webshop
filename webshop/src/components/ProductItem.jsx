@@ -70,7 +70,7 @@ import {
     return (
       <Container>
         <Circle />
-        <Image src={item.img} />
+        <Image src={productData.image} />
         <Info>
           <Icon>
             <ShoppingCartOutlined />
