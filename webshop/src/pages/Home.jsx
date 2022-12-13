@@ -7,6 +7,7 @@ import { mobile } from "../responsive";
 const ProductContainer = styled.div`
   display: flex;
   padding: 20px;
+  flex-wrap: wrap;
   justify-content: space-between;
   ${mobile({ padding: "0px", flexDirection: "column" })}
 `;

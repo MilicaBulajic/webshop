@@ -30,7 +30,7 @@ import {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f5fbfd;
+    background-color: #eee4e9;
     position: relative;
     &:hover ${Info}{
       opacity: 1;
@@ -61,7 +61,7 @@ import {
     margin: 10px;
     transition: all 0.5s ease;
     &:hover {
-      background-color: #e9f5f5;
+      background-color: #eee4e9;
       transform: scale(1.1);
     }
   `;
@@ -69,7 +69,7 @@ import {
   const ProductItem = ({ productData }) => {
     return (
       <Container>
-        <Circle />
+        
         <Image src={productData.image} />
         <Info>
           <Icon>
