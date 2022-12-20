@@ -1,10 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useProduct } from "../context/ProductsContextProvider";
 
 const Container = styled.div`
   height: 60px;
+`;
+
+const Menu = styled.div`
+  height: 60px;
+  display: flex;
+  text-align: center;
 `;
 
 const Wrapper = styled.div`
@@ -49,6 +57,7 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const { categories, setCategory } = useProduct()
   return (
     <Container>
       <Wrapper>
@@ -67,6 +76,33 @@ const Navbar = () => {
           </MenuItem>
         </Right>
       </Wrapper>
+        <Menu>
+        <div>
+          <Link
+            to="/"
+            onClick={() => setCategory("")}
+          >
+            <h3>All</h3>
+          </Link>
+        </div>
+        <div>
+        {categories &&
+          categories.map((item, index) => {
+            return (
+              <div key={`${item}-${index}`}>
+                <Link
+                  to={`/${item.toLowerCase()}`}
+                  onClick={() => {
+                    setCategory(item.toLowerCase());
+                  }}
+                >
+                  <h3>{item}</h3>
+                </Link>
+              </div>
+            );
+          })}
+          </div>
+          </Menu>
     </Container>
   );
 };

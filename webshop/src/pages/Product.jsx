@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
-import { ProductsContext } from "../context/ProductsContextProvider";
+import { useProduct } from "../context/ProductsContextProvider";
 import { mobile } from "../responsive";
 
 const Container = styled.div``;

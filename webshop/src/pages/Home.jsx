@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import { ProductsContext } from "../context/ProductsContextProvider";
+import { useProduct } from "../context/ProductsContextProvider";
 import ProductItem from "../components/ProductItem";
 import { mobile } from "../responsive";
+import { useParams } from "react-router-dom";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -13,7 +14,14 @@ const ProductContainer = styled.div`
 `;
 
 function Home() {
-  const products = useContext(ProductsContext);
+  const { products, setCategory } = useProduct();
+
+  const {category_id} = useParams()
+
+  useEffect(() => {
+    setCategory(category_id)
+  }, [category_id])
+
   return (
     <ProductContainer> 
       {products.map((product) => (
