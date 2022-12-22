@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 const ProductContainer = styled.div`
   display: flex;
-  padding: 20px;
+  margin-top: 10px;
   flex-wrap: wrap;
   justify-content: space-between;
   ${mobile({ padding: "0px", flexDirection: "column" })}
