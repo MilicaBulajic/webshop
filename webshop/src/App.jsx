@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { ProductsContextProvider } from './context/ProductsContextProvider'
+import { CartContextProvider } from "./context/CartContextProvider";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Product from "./pages/Product";
@@ -9,15 +10,14 @@ function App() {
 
   return (
     <ProductsContextProvider>
+      <CartContextProvider>
        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" exact element={<Home />} />
           <Route path="/:category_id" element={<Home />} />
-          <Route path="/products/:id" element={<Product />} />
+          <Route path="/product/:product_id" element={<Product />} />
         </Routes>
-        {location.pathname === "/" && (
-          <Navigate to="/" replace={true} />
-        )}
+        </CartContextProvider>
       </ProductsContextProvider>
   );
 }

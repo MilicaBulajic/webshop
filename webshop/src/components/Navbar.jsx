@@ -36,7 +36,8 @@ const MenuLink = styled(Link)`
     color: black;
   }
   &:hover{
-  background-color: lightgray;
+    text-decoration: underline;
+
   }
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
@@ -68,7 +69,8 @@ const Center = styled.div`
 `;
 
 const Logo = styled.h1`
-  font-weight: bold;
+  color: black; 
+  text-decoration: unset;
   margin: 0;
 `;
 const Right = styled.div`
@@ -86,56 +88,52 @@ const Navbar = () => {
   const { categories, setCategory } = useProduct()
   return (
     <>
-    <Container>
-      <Wrapper>
-        <Left>
-          <SearchBox>
+      <Container>
+        <Wrapper>
+          <Left>
+            {/* <SearchBox>
             <Input />
             <SearchIcon style={{ color: "gray", fontSize: 16 }} />
-          </SearchBox>
-        </Left>
-        <Center>
-          <Logo>STORE.</Logo>
-        </Center>
-        <Right>
-          <MenuItem>
-            <ShoppingCartIcon />
-          </MenuItem>
-        </Right>
-      </Wrapper>
+          </SearchBox> */}
+          </Left>
+          <Center>          
+             <Link to={`/`} style={{ textDecoration:'none' }}><Logo>STORE.</Logo></Link>
+          </Center>
+          <Right>
+            <MenuItem>
+              <ShoppingCartIcon />
+            </MenuItem>
+          </Right>
+        </Wrapper>
       </Container>
       <MenuContainer>
-       
-          <Menu>
-            <div>
-              <MenuLink
-                to="/"
-                onClick={() => setCategory("")}
-              >
-                All
-              </MenuLink>
-            </div>
-           
-              {categories &&
-                categories.map((item, index) => {
-                  return (
-                    <div key={`${item}-${index}`}>
-                      <MenuLink
-                        to={`/${item.toLowerCase()}`}
-                        onClick={() => {
-                          setCategory(item.toLowerCase());
-                        }}
-                      >
-                        {item}
-                      </MenuLink>
-                    </div>
-                  );
-                })}
-           
-          </Menu>
-       
+        <Menu>
+          <div>
+            <MenuLink
+              to="/"
+              onClick={() => setCategory("")}
+            >
+              All
+            </MenuLink>
+          </div>
+          {categories &&
+            categories.map((item, index) => {
+              return (
+                <div key={`${item}-${index}`}>
+                  <MenuLink
+                    to={`/${item.toLowerCase()}`}
+                    onClick={() => {
+                      setCategory(item.toLowerCase());
+                    }}
+                  >
+                    {item}
+                  </MenuLink>
+                </div>
+              );
+            })}
+        </Menu>
       </MenuContainer>
-      </>
+    </>
   );
 };
 

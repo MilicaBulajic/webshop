@@ -1,4 +1,3 @@
-
 import {
   FavoriteBorderOutlined,
   SearchOutlined,
@@ -6,6 +5,14 @@ import {
 } from "@mui/icons-material";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+
+
+const Title = styled.h1`
+  font-weight: 200;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`; 
 
 const Info = styled.div`
     opacity: 0;
@@ -15,6 +22,7 @@ const Info = styled.div`
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
     z-index: 3;
     display: flex;
     align-items: center;
@@ -24,10 +32,10 @@ const Info = styled.div`
   `;
 
 const Container = styled.div`
-    flex: 1;
+    display: flex;
     margin: 5px;
     min-width: 280px;
-    height: 350px;
+    height: 280px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,15 +47,22 @@ const Container = styled.div`
   `;
 
 const Circle = styled.div`
-    width: 200px;
-    height: 200px;
     border-radius: 50%;
     background-color: white;
     position: absolute;
   `;
 
 const Image = styled.img`
-    height: 75%;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    max-height: 224px;
+    object-fit: contain;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
     z-index: 2;
   `;
 
@@ -67,18 +82,19 @@ const Icon = styled.div`
     }
   `;
 
-const ProductItem = ({ productData }) => {
+const ProductItem = ({ item }) => {
   return (
 
-    <Link to={`/products/${productData.id}`}>
+    <Link to={`/product/${item.id}`}>
       <Container>
-        <Image src={productData.image} />
+        <Image src={item.image} />
         <Info>
           <Icon>
             <ShoppingCartOutlined />
           </Icon>
           <Icon>
             <SearchOutlined />
+
           </Icon>
           <Icon>
             <FavoriteBorderOutlined />

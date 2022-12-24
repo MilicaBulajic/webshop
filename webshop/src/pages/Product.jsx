@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import { useProduct } from "../context/ProductsContextProvider";
+import { useCart } from "../context/CartContextProvider";
 import { mobile } from "../responsive";
+import { SnipcartProvider } from 'use-snipcart';
+import { useSnipcart } from 'use-snipcart';
+
 
 const Container = styled.div``;
 
@@ -16,6 +20,7 @@ const Wrapper = styled.div`
 const ImgContainer = styled.div`
   flex: 1;
 `;
+
 
 const Image = styled.img`
   width: 100%;
@@ -69,7 +74,7 @@ const Amount = styled.span`
   width: 30px;
   height: 30px;
   border-radius: 10px;
-  border: 1px solid teal;
+  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +83,7 @@ const Amount = styled.span`
 
 const Button = styled.button`
   padding: 15px;
-  border: 2px solid teal;
+  border: 2px solid black;
   background-color: white;
   cursor: pointer;
   font-weight: 500;
@@ -89,20 +94,27 @@ const Button = styled.button`
 `;
 
 const Product = () => {
-  const params = useParams();
-  const data = useContext(ProductsContext);
-  const product = data[params.id - 1];
-  const { image, title, description, price } = product;
+  const { addToCart, items } = useCart();
+  const { product, loading, setProductID } = useProduct();
+  const findCartItem = items.find((item) => item.id === product.id);
+  const { product_id } = useParams();
+
+
+
+  useEffect(() => {
+    setProductID(product_id);
+  }, []);
+
   return (
     <Container>
       <Wrapper>
         <ImgContainer>
-          
+          <Image src={product.image} />
         </ImgContainer>
         <InfoContainer>
-          <Title>{title}</Title>
-          <Desc>{description}</Desc>
-          <Price>{price} $</Price>
+          <Title>{product.title}</Title>
+          <Desc>{product.description}</Desc>
+          <Price>{product.price} $</Price>
           <FilterContainer>
       
           </FilterContainer>
@@ -112,7 +124,14 @@ const Product = () => {
               <Amount>1</Amount>
               <Add />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <button type="button"
+                className="snipcart-add-item"
+                data-item-name={product.title}
+                data-item-price={product.price}
+                data-item-max-quantity={product.Qte}
+                data-item-id={product.id}
+                data-item-url="/">
+                  ADD TO CART</button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
