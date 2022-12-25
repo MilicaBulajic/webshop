@@ -5,8 +5,6 @@ import styled from "styled-components";
 import { useProduct } from "../context/ProductsContextProvider";
 import { useCart } from "../context/CartContextProvider";
 import { mobile } from "../responsive";
-import { SnipcartProvider } from 'use-snipcart';
-import { useSnipcart } from 'use-snipcart';
 
 
 const Container = styled.div``;
@@ -14,7 +12,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -24,7 +22,7 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 90vh;
+  height: 100%;
   object-fit: cover;
   ${mobile({ height: "40vh" })}
 `;
@@ -116,22 +114,13 @@ const Product = () => {
           <Desc>{product.description}</Desc>
           <Price>{product.price} $</Price>
           <FilterContainer>
-      
+
           </FilterContainer>
           <AddContainer>
-            <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
-            </AmountContainer>
-            <button type="button"
-                className="snipcart-add-item"
-                data-item-name={product.title}
-                data-item-price={product.price}
-                data-item-max-quantity={product.Qte}
-                data-item-id={product.id}
-                data-item-url="/">
-                  ADD TO CART</button>
+            <Button onClick={() => addToCart(product, findCartItem)}>
+              <span>
+                {findCartItem ? "REMOVE" : "ADD TO CART"}
+              </span></Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

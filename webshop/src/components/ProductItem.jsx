@@ -89,16 +89,15 @@ const ProductItem = ({ item }) => {
       <Container>
         <Image src={item.image} />
         <Info>
-          <Icon>
+          {/* <Icon>
             <ShoppingCartOutlined />
-          </Icon>
+          </Icon> */}
           <Icon>
             <SearchOutlined />
-
           </Icon>
-          <Icon>
+          {/* <Icon>
             <FavoriteBorderOutlined />
-          </Icon>
+          </Icon> */}
         </Info>
       </Container>
     </Link>

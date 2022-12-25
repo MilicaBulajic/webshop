@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
+import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useProduct } from "../context/ProductsContextProvider";
+import { useCart } from "../context/CartContextProvider";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -85,7 +87,8 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
-  const { categories, setCategory } = useProduct()
+  const { categories, setCategory } = useProduct();
+  const { items } = useCart();
   return (
     <>
       <Container>
@@ -96,12 +99,18 @@ const Navbar = () => {
             <SearchIcon style={{ color: "gray", fontSize: 16 }} />
           </SearchBox> */}
           </Left>
-          <Center>          
-             <Link to={`/`} style={{ textDecoration:'none' }}><Logo>STORE.</Logo></Link>
+          <Center>
+            <Link to={`/`} style={{ textDecoration: 'none' }}><Logo>STORE.</Logo></Link>
           </Center>
           <Right>
             <MenuItem>
-              <ShoppingCartIcon />
+              <div>
+                <Link to="/cart">
+                  <Badge badgeContent={items.length} color="secondary">
+                    <ShoppingCartIcon />
+                  </Badge>
+                </Link>
+              </div>
             </MenuItem>
           </Right>
         </Wrapper>
