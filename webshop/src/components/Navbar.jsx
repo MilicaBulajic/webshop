@@ -29,19 +29,17 @@ const Menu = styled.div`
 const MenuLink = styled(Link)`
   font-size: 16px;
   cursor: pointer;
-  margin-left: 25px;
+  margin-left: 12px;
   display: flex;
   text-decoration: none;
   color: black;
-
+  ${mobile({ fontSize: "14px", margin: "3px" })}
   &:active{
     color: black;
   }
   &:hover{
     text-decoration: underline;
-
   }
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
 const Wrapper = styled.div`
